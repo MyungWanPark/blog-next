@@ -20,13 +20,13 @@ export default function FilterablePosts({ posts, categories }: Props) {
             : posts.filter((post) => post.category === selected);
     console.log("filteredPosts = ", filteredPosts);
     return (
-        <>
+        <section className="flex text-center m-4">
             <PostsGrid posts={filteredPosts} />
             <Categories
                 categories={[All_Posts, ...categories]}
                 onClick={setSelected}
                 selected={selected}
             />
-        </>
+        </section>
     );
 }
