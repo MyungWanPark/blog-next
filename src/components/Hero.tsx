@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="text-center">
+        <section className="text-center mb-3">
             <Image
                 src={profileImage}
                 alt="profile image"
