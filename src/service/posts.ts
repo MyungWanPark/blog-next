@@ -12,6 +12,8 @@ export type Post = {
 
 export type PostDetail = Post & {
     content: string;
+    prevPost: Post | null;
+    nextPost: Post | null;
 };
 
 export async function getFeaturedPosts(): Promise<Post[]> {
@@ -38,15 +40,20 @@ export async function getPostDetail(filePath: string): Promise<PostDetail> {
         "posts",
         `${filePath}.md`
     );
-    const metaData = await getAllPosts().then((posts) =>
-        posts.find((post) => post.path === filePath)
-    );
+    const posts = await getAllPosts();
+    const post = posts.find((post) => post.path === filePath);
 
-    if (!metaData) throw new Error(`${filePath} file not found`);
+    if (!post) throw new Error(`${filePath} file not found`);
     const postDetail = await readFile(dataPath, "utf-8");
 
+    const index = posts.indexOf(post);
+    const prevPost = index > 0 ? posts[index - 1] : null;
+    const nextPost = index < posts.length - 1 ? posts[index + 1] : null;
+
     return {
-        ...metaData,
+        ...post,
         content: postDetail,
+        prevPost,
+        nextPost,
     };
 }
