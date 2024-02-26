@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import EmailResultBanner from "./EmailResultBanner";
+import { sendContactEmail } from "@/service/contact";
 type Form = {
     email: string;
     subject: string;
@@ -13,12 +14,14 @@ export type EmailResult = {
     message: string;
 };
 
+const DEFAULT_FORM_DATA = {
+    email: "",
+    subject: "",
+    message: "",
+};
+
 export default function ContactForm() {
-    const [form, setForm] = useState<Form>({
-        email: "",
-        subject: "",
-        message: "",
-    });
+    const [form, setForm] = useState<Form>(DEFAULT_FORM_DATA);
     const [emailResult, setEmailResult] = useState<EmailResult | null>(null);
 
     const onChange = (
@@ -32,13 +35,25 @@ export default function ContactForm() {
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         console.log("onSubmit 실행됨");
         e.preventDefault();
-        setEmailResult({
-            state: "success",
-            message: "정상적으로 전송되었습니다.",
-        });
-        setTimeout(() => {
-            setEmailResult(null);
-        }, 3000);
+        sendContactEmail(form) //
+            .then(() => {
+                setEmailResult({
+                    state: "success",
+                    message: "정상적으로 전송되었습니다.",
+                });
+                setForm(DEFAULT_FORM_DATA);
+            })
+            .catch(() => {
+                setEmailResult({
+                    state: "fail",
+                    message: "메일이 전송되지 않았습니다.",
+                });
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    setEmailResult(null);
+                }, 3000);
+            });
     };
     return (
         <section className="w-full max-w-md mt-4">
@@ -57,6 +72,7 @@ export default function ContactForm() {
                     value={form.email}
                     required
                     onChange={onChange}
+                    autoFocus
                 />
                 <label htmlFor="subject" className="my-1 font-bold">
                     Subject
