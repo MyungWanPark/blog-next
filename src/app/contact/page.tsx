@@ -18,7 +18,7 @@ const LINKS = [
 
 export default function ContactPage() {
     return (
-        <section className="text-center mt-4">
+        <section className="mt-4 flex flex-col items-center">
             <h2 className="text-2xl font-bold">Contact me!</h2>
             <p>info@myung.com</p>
             <ul className="flex justify-center gap-4">
