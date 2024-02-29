@@ -1,4 +1,5 @@
 import ContactForm from "@/components/ContactForm";
+import { Metadata } from "next";
 import { AiFillGithub, AiFillLinkedin, AiFillYoutube } from "react-icons/ai";
 
 const LINKS = [
@@ -15,6 +16,11 @@ const LINKS = [
         target: "https://youtube.com",
     },
 ];
+
+export const metadata: Metadata = {
+    title: "이메일 보내기",
+    description: "Sending email to Myungwan",
+};
 
 export default function ContactPage() {
     return (

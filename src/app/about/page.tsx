@@ -1,5 +1,6 @@
 import AboutSection from "@/components/AboutSection";
 import Hero from "@/components/Hero";
+import { Metadata } from "next";
 
 const contents = [
     {
@@ -22,6 +23,11 @@ const contents = [
         ],
     },
 ];
+
+export const metadata: Metadata = {
+    title: "About me",
+    description: "Career description",
+};
 
 export default function AboutPage() {
     return (
