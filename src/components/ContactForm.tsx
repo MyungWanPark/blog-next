@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import EmailResultBanner from "./EmailResultBanner";
 import { sendContactEmail } from "@/service/contact";
 type Form = {
-    email: string;
+    emailFrom: string;
     subject: string;
     message: string;
 };
@@ -15,7 +15,7 @@ export type EmailResult = {
 };
 
 const DEFAULT_FORM_DATA = {
-    email: "",
+    emailFrom: "",
     subject: "",
     message: "",
 };
@@ -60,21 +60,24 @@ export default function ContactForm() {
             {emailResult && <EmailResultBanner emailResult={emailResult} />}
             <form
                 onSubmit={onSubmit}
-                className="flex w-full flex-col bg-slate-700 text-white rounded-lg p-4"
+                className="flex w-full flex-col bg-slate-700 rounded-lg p-4"
             >
-                <label htmlFor="email" className="my-1 font-bold">
+                <label
+                    htmlFor="emailFrom"
+                    className="my-1 font-bold text-white"
+                >
                     Email
                 </label>
                 <input
                     type="email"
-                    id="email"
-                    name="email"
-                    value={form.email}
+                    id="emailFrom"
+                    name="emailFrom"
+                    value={form.emailFrom}
                     required
                     onChange={onChange}
                     autoFocus
                 />
-                <label htmlFor="subject" className="my-1 font-bold">
+                <label htmlFor="subject" className="my-1 font-bold text-white">
                     Subject
                 </label>
                 <input
@@ -85,7 +88,7 @@ export default function ContactForm() {
                     required
                     onChange={onChange}
                 />
-                <label htmlFor="message" className="my-1 font-bold">
+                <label htmlFor="message" className="my-1 font-bold text-white">
                     Message
                 </label>
                 <textarea

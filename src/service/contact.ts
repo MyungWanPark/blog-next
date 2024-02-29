@@ -9,7 +9,8 @@ export async function sendContactEmail(email: Email) {
         },
     });
     const data = await response.json();
-
+    console.log("response = ", response);
+    console.log("data = ", data);
     if (!response.ok) {
         throw new Error(data.message || "서버 요청에 실패하였습니다.");
     }
