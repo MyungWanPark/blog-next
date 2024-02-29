@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <header className="flex justify-between p-4">
             <Link href="/" className="text-2xl font-bold">
-                Wan's Blog
+                {"Wan's Blog"}
             </Link>
             <nav className="flex gap-3">
                 <Link href="/">home</Link>

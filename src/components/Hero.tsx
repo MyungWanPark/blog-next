@@ -13,7 +13,7 @@ export default function Hero() {
                 priority
                 className="mx-auto rounded-full aspect-square"
             />
-            <h2 className="text-2xl font-bold p-1">I'm Myungwan</h2>
+            <h2 className="text-2xl font-bold p-1">{"I'm Myungwan"}</h2>
             <h3 className="text-xl font-semibold">Full-Stack developer</h3>
             <p>유용한 기능을 개발하는 사람</p>
             <Link href="/contact">

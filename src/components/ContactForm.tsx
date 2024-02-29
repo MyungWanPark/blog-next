@@ -28,12 +28,10 @@ export default function ContactForm() {
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
-        console.log("value = ", value);
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        console.log("onSubmit 실행됨");
         e.preventDefault();
         sendContactEmail(form) //
             .then(() => {

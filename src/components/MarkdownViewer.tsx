@@ -19,9 +19,10 @@ export default function MarkdownViewer({ content }: { content: string }) {
                             style={materialDark}
                             ref={null}
                             PreTag="div"
-                            children={String(children).replace(/\n$/, "")}
                             language={match[1]}
-                        />
+                        >
+                            {String(children).replace(/\n$/, "")}
+                        </SyntaxHighlighter>
                     ) : (
                         <code {...rest} className={className}>
                             {children}
